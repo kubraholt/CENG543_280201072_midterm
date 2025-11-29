@@ -1,0 +1,4 @@
+attention,mean_entropy,mean_sharpness
+bahdanau,1.86747,0.3142719
+luong,0.02813599,0.9878436
+scaleddot,1.7634584,0.37919375

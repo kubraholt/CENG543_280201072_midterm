@@ -1,0 +1,4 @@
+attn,bleu,rouge,ppl
+bahdanau,4.730241797349518,,
+luong,3.590921732960306,,
+scaleddot,4.770982844843952,,

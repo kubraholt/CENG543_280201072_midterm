@@ -1,0 +1,12 @@
+torch
+torchvision
+torchaudio
+transformers
+datasets
+sentencepiece
+scikit-learn
+matplotlib
+tqdm
+seaborn
+spacy
+torchtext
