@@ -106,13 +106,13 @@ def generate_qualitative_report():
             report_lines.append(f"- Generated answer matches gold: {metadata['answer_match']}\n")
             
             if category == 'faithful':
-                report_lines.append("- **Status**: FAITHFUL ✅ (Correct retrieval and accurate generation)\n")
+                report_lines.append("- **Status**: FAITHFUL (Correct retrieval and accurate generation)\n")
             elif category == 'hallucinated':
-                report_lines.append("- **Status**: HALLUCINATED ❌ (No relevant context, invented answer)\n")
+                report_lines.append("- **Status**: HALLUCINATED (No relevant context, invented answer)\n")
             elif category == 'partial_grounding':
-                report_lines.append("- **Status**: PARTIAL GROUNDING ⚠️ (Some context available, mixed accuracy)\n")
+                report_lines.append("- **Status**: PARTIAL GROUNDING (Some context available, mixed accuracy)\n")
             else:
-                report_lines.append("- **Status**: FLUENT BUT WRONG ❌ (Natural language but factually incorrect)\n")
+                report_lines.append("- **Status**: FLUENT BUT WRONG (Natural language but factually incorrect)\n")
             
             report_lines.append("\n" + "-"*80 + "\n\n")
     

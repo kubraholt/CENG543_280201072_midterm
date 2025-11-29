@@ -86,7 +86,7 @@ if torch.cuda.is_available():
     torch.cuda.manual_seed_all(SEED)
 
 DEVICE = torch.device(args.device if args.device else ('cuda' if torch.cuda.is_available() else 'cpu'))
-print(f"🖥️  Using device: {DEVICE}")
+print(f"Using device: {DEVICE}")
 
 # Auto-generate experiment name
 if args.exp_name is None:
@@ -165,7 +165,7 @@ def build_glove_embedding_matrix(src_itos, glove_path, emb_dim=300):
             embedding_matrix[i] = torch.randn(emb_dim) * 0.01
             oov_count += 1
     
-    print(f"✅ Embedding matrix: {vocab_size} words, {oov_count} OOV ({100*oov_count/vocab_size:.1f}%)")
+    print(f"Embedding matrix: {vocab_size} words, {oov_count} OOV ({100*oov_count/vocab_size:.1f}%)")
     return embedding_matrix
 
 # =============================================================================
@@ -571,7 +571,7 @@ with open(os.path.join(LOG_DIR, 'trg_itos.json'), 'w') as f:
 # =============================================================================
 # Build Model
 # =============================================================================
-print(f"🏗️  Building model: {args.model} with {args.emb_mode} embeddings...")
+print(f"Building model: {args.model} with {args.emb_mode} embeddings...")
 
 if args.model == 'seq2seq':
     # === SEQ2SEQ MODEL ===
@@ -839,7 +839,7 @@ def evaluate_model(model_type, enc, dec, init_proj, dataloader, is_bert):
 # =============================================================================
 # Training Loop
 # =============================================================================
-print(f"\n🚀 Starting training: {args.epochs} epochs\n")
+print(f"\nStarting training: {args.epochs} epochs\n")
 
 best_bleu = 0.0
 metrics_csv = os.path.join(LOG_DIR, 'train_metrics.csv')
@@ -892,14 +892,14 @@ for epoch in range(1, args.epochs + 1):
                 'dec': dec.state_dict()
             }, ckpt_path)
         
-        print(f"   ✅ Saved best model (BLEU: {best_bleu:.2f})")
+        print(f"   Saved best model (BLEU: {best_bleu:.2f})")
 
-print(f"\n✅ Training complete! Best BLEU: {best_bleu:.2f}")
+print(f"\nTraining complete! Best BLEU: {best_bleu:.2f}")
 
 # =============================================================================
 # Final Test Evaluation
 # =============================================================================
-print("\n📊 Running final test evaluation...")
+print("\nRunning final test evaluation...")
 
 # Load best checkpoint
 ckpt = torch.load(os.path.join(CHECKPOINT_DIR, 'best.pt'), map_location=DEVICE)
@@ -914,7 +914,7 @@ if args.model == 'seq2seq':
 else:
     test_bleu, test_rouge_l = evaluate_model('transformer', enc, dec, None, test_dl, is_bert_mode)
 
-print(f"\n🎯 Final Test Results:")
+print(f"\nFinal Test Results:")
 print(f"   BLEU: {test_bleu:.2f}")
 print(f"   ROUGE-L: {test_rouge_l:.4f}")
 
@@ -936,7 +936,7 @@ config = vars(args)
 with open(os.path.join(LOG_DIR, 'config.json'), 'w') as f:
     json.dump(config, f, indent=2)
 
-print(f"\n✨ All results saved to: {EXP_DIR}")
+print(f"\nAll results saved to: {EXP_DIR}")
 print(f"   - Checkpoints: {CHECKPOINT_DIR}")
 print(f"   - Logs: {LOG_DIR}")
 print(f"   - Outputs: {OUTPUT_DIR}")

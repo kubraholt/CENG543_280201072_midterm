@@ -17,7 +17,7 @@ def load_bert_model(path, device, rnn_type, hidden_dim=128):
         bert_model_name='distilbert-base-uncased',
         hidden_dim=hidden_dim,
         rnn_type=rnn_type,
-        num_layers=2,          # 🔹 num_layers eklendi
+        num_layers=2
         freeze_bert=False
     )
     model.load_state_dict(torch.load(path, map_location=device))

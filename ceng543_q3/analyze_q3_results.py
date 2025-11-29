@@ -32,7 +32,7 @@ def load_all_results(exp_dir='q3_experiments'):
         train_metrics_path = exp / 'logs' / 'train_metrics.csv'
         
         if not all([test_results_path.exists(), config_path.exists(), train_metrics_path.exists()]):
-            print(f"⚠️  Skipping incomplete experiment: {exp.name}")
+            print(f"Skipping incomplete experiment: {exp.name}")
             continue
         
         # Load test results
@@ -92,7 +92,7 @@ def plot_model_comparison(results, output_dir='q3_results'):
     
     plt.tight_layout()
     plt.savefig(f'{output_dir}/model_comparison.png', dpi=300, bbox_inches='tight')
-    print(f"✅ Saved: {output_dir}/model_comparison.png")
+    print(f"Saved: {output_dir}/model_comparison.png")
     plt.close()
 
 def plot_training_curves(results, output_dir='q3_results'):
@@ -146,7 +146,7 @@ def plot_training_curves(results, output_dir='q3_results'):
     
     plt.tight_layout()
     plt.savefig(f'{output_dir}/training_curves.png', dpi=300, bbox_inches='tight')
-    print(f"✅ Saved: {output_dir}/training_curves.png")
+    print(f"Saved: {output_dir}/training_curves.png")
     plt.close()
 
 def plot_ablation_study(results, output_dir='q3_results'):
@@ -154,7 +154,7 @@ def plot_ablation_study(results, output_dir='q3_results'):
     ablation_results = [r for r in results if r['model'] == 'transformer' and r['emb_mode'] == 'learnable']
     
     if len(ablation_results) < 2:
-        print("⚠️  Not enough ablation experiments to plot")
+        print("Not enough ablation experiments to plot")
         return
     
     fig, axes = plt.subplots(1, 2, figsize=(14, 5))
@@ -185,7 +185,7 @@ def plot_ablation_study(results, output_dir='q3_results'):
     
     plt.tight_layout()
     plt.savefig(f'{output_dir}/ablation_study.png', dpi=300, bbox_inches='tight')
-    print(f"✅ Saved: {output_dir}/ablation_study.png")
+    print(f"Saved: {output_dir}/ablation_study.png")
     plt.close()
 
 def plot_embedding_impact(results, output_dir='q3_results'):
@@ -237,7 +237,7 @@ def plot_embedding_impact(results, output_dir='q3_results'):
     
     plt.tight_layout()
     plt.savefig(f'{output_dir}/embedding_impact.png', dpi=300, bbox_inches='tight')
-    print(f"✅ Saved: {output_dir}/embedding_impact.png")
+    print(f"Saved: {output_dir}/embedding_impact.png")
     plt.close()
 
 def generate_latex_table(results, output_dir='q3_results'):
@@ -268,11 +268,11 @@ Model & Embedding & BLEU & ROUGE-L & Avg Time/Epoch (s) & GPU Mem (MB) \\
     with open(f'{output_dir}/results_table.tex', 'w') as f:
         f.write(latex)
     
-    print(f"✅ Saved: {output_dir}/results_table.tex")
+    print(f"Saved: {output_dir}/results_table.tex")
 
 def main():
     print("\n" + "="*60)
-    print("📊 Q3 RESULTS ANALYZER")
+    print("Q3 RESULTS ANALYZER")
     print("="*60 + "\n")
     
     # Load all results
@@ -280,11 +280,11 @@ def main():
     results = load_all_results()
     
     if len(results) == 0:
-        print("❌ No experiment results found!")
+        print("No experiment results found!")
         print("   Make sure experiments are in: q3_experiments/")
         return 1
     
-    print(f"✅ Loaded {len(results)} experiments\n")
+    print(f"Loaded {len(results)} experiments\n")
     
     # Create output directory
     output_dir = 'q3_results'
@@ -298,12 +298,12 @@ def main():
     plot_embedding_impact(results, output_dir)
     
     # Generate LaTeX table
-    print("📝 Generating LaTeX table...")
+    print("Generating LaTeX table...")
     generate_latex_table(results, output_dir)
     
     # Print summary
     print("\n" + "="*60)
-    print("📊 SUMMARY")
+    print("SUMMARY")
     print("="*60)
     
     # Best overall
@@ -319,13 +319,13 @@ def main():
                           key=lambda x: x['test_bleu'], default=None)
     
     if seq2seq_best and transformer_best:
-        print(f"\n📊 Model Comparison:")
+        print(f"\nModel Comparison:")
         print(f"   Seq2Seq best: {seq2seq_best['test_bleu']:.2f} BLEU ({seq2seq_best['emb_mode']})")
         print(f"   Transformer best: {transformer_best['test_bleu']:.2f} BLEU ({transformer_best['emb_mode']})")
         diff = transformer_best['test_bleu'] - seq2seq_best['test_bleu']
         print(f"   Improvement: {diff:+.2f} BLEU ({diff/seq2seq_best['test_bleu']*100:+.1f}%)")
     
-    print(f"\n✨ All visualizations saved to: {output_dir}/")
+    print(f"\nAll visualizations saved to: {output_dir}/")
     print("   - model_comparison.png")
     print("   - training_curves.png")
     print("   - ablation_study.png")
