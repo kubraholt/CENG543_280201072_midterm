@@ -30,7 +30,7 @@ def main():
     y = data['labels'].astype(int)
     os.makedirs(args.out_dir, exist_ok=True)
 
-    # PCA (2 bileşen)
+    # PCA (2 components)
     pca2 = PCA(n_components=2)
     X_pca2 = pca2.fit_transform(X)
     plot_2d(X_pca2, y, os.path.join(args.out_dir, f'{args.prefix}_pca.png'), f'PCA: {args.prefix}')

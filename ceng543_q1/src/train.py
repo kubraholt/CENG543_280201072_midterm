@@ -34,7 +34,7 @@ def main(args):
 
     if args.mode == 'glove':
         print("Loading GloVe (gensim KeyedVectors)...")
-        # GloVe'u daha önce word2vec formatına çevip ~/.vector_cache içinde kaydetmiş olman gerekiyor:
+        # You need to convert GloVe to word2vec format and save it in ~/.vector_cache beforehand:
         glove_path = os.path.expanduser("~/.vector_cache/glove.6B.300d.word2vec.txt")
         if not os.path.exists(glove_path):
             raise FileNotFoundError(f"GloVe word2vec file not found at {glove_path}. Run the conversion step.")

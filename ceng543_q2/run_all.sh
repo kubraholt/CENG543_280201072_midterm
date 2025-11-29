@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Paths (dizine göre düzenle)
+# Paths (adjust according to your directory)
 TRAIN_PY="./train_multi30k_attention.py"
 EVAL_PY="./eval_metrics.py"
 
 # sanity
 if [ ! -f "$TRAIN_PY" ]; then
-  echo "ERROR: $TRAIN_PY bulunamadı. Çalışma dizininde olduğundan emin ol."
+  echo "ERROR: $TRAIN_PY not found. Make sure you are in the working directory."
   exit 1
 fi
 if [ ! -f "$EVAL_PY" ]; then
-  echo "ERROR: $EVAL_PY bulunamadı. Çalışma dizininde olduğundan emin ol."
+  echo "ERROR: $EVAL_PY not found. Make sure you are in the working directory."
   exit 1
 fi
 

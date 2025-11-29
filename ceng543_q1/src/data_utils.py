@@ -6,7 +6,7 @@ from torch.utils.data import Dataset, DataLoader
 import torch
 from typing import List
 
-# gensim KeyedVectors kullanıyoruz
+# Using gensim KeyedVectors
 from gensim.models import KeyedVectors
 import numpy as np
 

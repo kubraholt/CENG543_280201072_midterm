@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import numpy as np, os, glob, csv
 
-# Alt klasörleri belirle (senin mevcut yapına göre)
+# Define subdirectories (adjust according to your current structure)
 attn_dirs = ["outputs/bahdanau", "outputs/luong", "outputs/scaleddot"]
 out_rows = []
 

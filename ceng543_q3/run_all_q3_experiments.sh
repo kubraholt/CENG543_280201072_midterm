@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # run_all_q3_experiments.sh
-# Q3 için tüm deneyleri otomatik çalıştırır
+# Automatically runs all Q3 experiments
 
 set -euo pipefail
 
